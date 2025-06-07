@@ -1,24 +1,26 @@
 package Expense-Tracker;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Transaction {
     private int transaction_id;
     private string transaction_name;
     private double transaction_price;
     private LocalDate transaction_date;
+    private static formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public Transaction() {
-        this.transaction_id = -1;
-        this.transaction_name = "";
-        this.transaction_price = -1;
+    public Transaction(int id, string name, double price) {
+        this.setID(id);
+        this.setName(name);
+        this.setPrice(price);
         this.transaction_date = LocalDate.now();
     }
 
-    public Transaction(int id, string name, double price, LocalDate date) {
-        this.transaction_id = id;
-        this.transaction_name = name;
-        this.transaction_price = price;
-        this.transaction_date = date;
+    public Transaction(int id, string name, double price, string date) {
+        this.setID(id);
+        this.setName(name);
+        this.setPrice(price);
+        this.setDate(date);
     }
 
     public void setID(int id) {
@@ -46,11 +48,11 @@ public class Transaction {
     }
 
     public void setDate(LocalDate date) {
-        this.transaction_date = date;
+        this.transaction_date = LocalDate.parse(date);
     }
 
-    public LocalDate getDate(){
-        return this.transaction_date;
+    public string getDate(){
+        return this.transaction_date.format(formatter);
     }
 
 }
