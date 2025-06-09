@@ -73,5 +73,16 @@ public class ExpenseTracker {
         }
     }
 
-    public void print() {}
+    public void print() {
+        System.out.format(
+            "%10s|%24s|%10s|%10s|\n",
+            "ID",
+            "NAME",
+            "PRICE",
+            "DATE"
+        );
+        for (int i = 0; i < transactions.size(); i++) {
+            System.out.println(transactions.get(i).toString());
+        }
+    }
 }
