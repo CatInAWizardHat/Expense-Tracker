@@ -1,39 +1,44 @@
-package Expense-Tracker;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.IOException;
 import java.util.Scanner;
 
 public class ExpenseTracker {
+
     private ArrayList<Transaction> transactions;
     private File transactionFile;
 
-    public void addTransaction() {
-
+    public ExpenseTracker() {
+        try {
+            transactionFile = new File("expense_record.csv");
+            if (transactionFile.createNewFile()) {
+                System.out.println("File created.");
+            } else {
+                System.out.println("File already exists.");
+            }
+            this.read(transactionFile);
+        } catch (IOException e) {
+            System.out.println(e.toString());
+            e.printStackTrace();
+        }
     }
 
     private void read(File file) throws IOException {
         Scanner sc = new Scanner(file);
 
-        while(scanner.hasNext()) {
-            String[] tokens = scanner.nextLine.split(',');
-            int id = tokens[0];
-            string name = tokens[1];
-            double price = tokens[2];
-            string date = tokens[3];
+        while (sc.hasNext()) {
+            String[] tokens = sc.nextLine().split(",");
+            int id = Integer.parseInt(tokens[0]);
+            String name = tokens[1];
+            double price = Double.parseDouble(tokens[2]);
+            String date = tokens[3];
+            this.addTransaction(id, name, price, date);
         }
+
+        sc.close();
     }
 
-    public ExpenseTracker() {
-        try {
-            File expenses = new File("expense_record.csv");
-            if (expenses.createNewFile()) {
-                System.out.println("File created.");
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println(e.toString());
-            e.printStackTrace();
-        }
+    public void addTransaction(int id, String name, double price, String date) {
+        transactions.add(new Transaction(id, name, price, date));
     }
 }
