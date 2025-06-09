@@ -56,16 +56,12 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return (
-            "" +
-            this.getID() +
-            " | " +
-            this.getName() +
-            " | " +
-            this.getPrice() +
-            " | " +
-            this.getDate() +
-            "\n"
+        return String.format(
+            "%10d|%24s|%10.2f|%10s|\n",
+            this.getID(),
+            this.getName(),
+            this.getPrice(),
+            this.getDate()
         );
     }
 }
