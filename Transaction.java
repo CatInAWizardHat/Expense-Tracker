@@ -53,4 +53,19 @@ public class Transaction {
     public String getDate() {
         return this.transaction_date.format(formatter);
     }
+
+    @Override
+    public String toString() {
+        return (
+            "" +
+            this.getID() +
+            " | " +
+            this.getName() +
+            " | " +
+            this.getPrice() +
+            " | " +
+            this.getDate() +
+            "\n"
+        );
+    }
 }
