@@ -72,4 +72,6 @@ public class ExpenseTracker {
             err.printStackTrace();
         }
     }
+
+    public void print() {}
 }
